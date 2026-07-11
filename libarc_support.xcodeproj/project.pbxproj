@@ -1,0 +1,269 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B6260C2030018BDD00EE685C /* arc_core.m in Sources */ = {isa = PBXBuildFile; fileRef = B6260C1F30018BDD00EE685C /* arc_core.m */; };
+		B6260C2230018BDE00EE685C /* arc_weak_table.m in Sources */ = {isa = PBXBuildFile; fileRef = B6260C2130018BDE00EE685C /* arc_weak_table.m */; };
+		B6260C2330018BDE00EE685C /* arc_weak_runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = B6260C2430018BDE00EE685C /* arc_weak_runtime.m */; };
+		B6260C2630018BDF00EE685C /* arc_pool.m in Sources */ = {isa = PBXBuildFile; fileRef = B6260C2530018BDF00EE685C /* arc_pool.m */; };
+		B6260C2830018BE000EE685C /* arc_bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B6260C2730018BE000EE685C /* arc_bridge.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B6260C0E30018BDC00EE685C /* libarc_support.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libarc_support.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6260C2930018BE100EE685C /* arc_objc_compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arc_objc_compat.h; sourceTree = "<group>"; };
+		B6260C2A30018BE100EE685C /* arc_weak_table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arc_weak_table.h; sourceTree = "<group>"; };
+		B6260C2B30018BE100EE685C /* libarc_support.exp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = libarc_support.exp; sourceTree = "<group>"; };
+		B6260C1F30018BDD00EE685C /* arc_core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arc_core.m; sourceTree = "<group>"; };
+		B6260C2130018BDE00EE685C /* arc_weak_table.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arc_weak_table.m; sourceTree = "<group>"; };
+		B6260C2430018BDE00EE685C /* arc_weak_runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arc_weak_runtime.m; sourceTree = "<group>"; };
+		B6260C2530018BDF00EE685C /* arc_pool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arc_pool.m; sourceTree = "<group>"; };
+		B6260C2730018BE000EE685C /* arc_bridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arc_bridge.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B6260C0B30018BDC00EE685C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B6260C0330018BDB00EE685C = {
+			isa = PBXGroup;
+			children = (
+				B6260C1E30018BDD00EE685C /* src */,
+				B6260C2C30018BE100EE685C /* private */,
+				B6260C2D30018BE100EE685C /* exports */,
+				B6260C0F30018BDC00EE685C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B6260C1E30018BDD00EE685C /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B6260C1F30018BDD00EE685C /* arc_core.m */,
+				B6260C2730018BE000EE685C /* arc_bridge.m */,
+				B6260C2530018BDF00EE685C /* arc_pool.m */,
+				B6260C2130018BDE00EE685C /* arc_weak_table.m */,
+				B6260C2430018BDE00EE685C /* arc_weak_runtime.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		B6260C0F30018BDC00EE685C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B6260C0E30018BDC00EE685C /* libarc_support.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B6260C2C30018BE100EE685C /* private */ = {
+			isa = PBXGroup;
+			children = (
+				B6260C2930018BE100EE685C /* arc_objc_compat.h */,
+				B6260C2A30018BE100EE685C /* arc_weak_table.h */,
+			);
+			path = private;
+			sourceTree = "<group>";
+		};
+		B6260C2D30018BE100EE685C /* exports */ = {
+			isa = PBXGroup;
+			children = (
+				B6260C2B30018BE100EE685C /* libarc_support.exp */,
+			);
+			path = exports;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B6260C0C30018BDC00EE685C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B6260C0D30018BDC00EE685C /* libarc_support */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6260C1230018BDC00EE685C /* Build configuration list for PBXNativeTarget "libarc_support" */;
+			buildPhases = (
+				B6260C0A30018BDC00EE685C /* Sources */,
+				B6260C0B30018BDC00EE685C /* Frameworks */,
+				B6260C0C30018BDC00EE685C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libarc_support;
+			productName = libarc_support;
+			productReference = B6260C0E30018BDC00EE685C /* libarc_support.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B6260C0530018BDB00EE685C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = B6260C0830018BDB00EE685C /* Build configuration list for PBXProject "libarc_support" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B6260C0330018BDB00EE685C;
+			productRefGroup = B6260C0F30018BDC00EE685C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B6260C0D30018BDC00EE685C /* libarc_support */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B6260C0A30018BDC00EE685C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6260C2030018BDD00EE685C /* arc_core.m in Sources */,
+				B6260C2830018BE000EE685C /* arc_bridge.m in Sources */,
+				B6260C2630018BDF00EE685C /* arc_pool.m in Sources */,
+				B6260C2230018BDE00EE685C /* arc_weak_table.m in Sources */,
+				B6260C2330018BDE00EE685C /* arc_weak_runtime.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B6260C1030018BDC00EE685C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				EXPORTED_SYMBOLS_FILE = exports/libarc_support.exp;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					include,
+					private,
+				);
+				LD_DYLIB_INSTALL_NAME = "$(EXECUTABLE_NAME)";
+					MACOSX_DEPLOYMENT_TARGET = 10.4;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lobjc",
+					"-framework",
+					CoreFoundation,
+					"$(BLOCKS_RUNTIME_LDFLAGS)",
+				);
+				SDKROOT = macosx;
+				STRIP_INSTALLED_PRODUCT = NO;
+			};
+			name = Debug;
+		};
+		B6260C1130018BDC00EE685C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				EXPORTED_SYMBOLS_FILE = exports/libarc_support.exp;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					include,
+					private,
+				);
+				LD_DYLIB_INSTALL_NAME = "$(EXECUTABLE_NAME)";
+					MACOSX_DEPLOYMENT_TARGET = 10.4;
+				OTHER_LDFLAGS = (
+					"-lobjc",
+					"-framework",
+					CoreFoundation,
+					"$(BLOCKS_RUNTIME_LDFLAGS)",
+				);
+				SDKROOT = macosx;
+				STRIP_INSTALLED_PRODUCT = NO;
+			};
+			name = Release;
+		};
+		B6260C1330018BDC00EE685C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = "";
+				PRODUCT_NAME = libarc_support;
+			};
+			name = Debug;
+		};
+		B6260C1430018BDC00EE685C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = "";
+				PRODUCT_NAME = libarc_support;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B6260C0830018BDB00EE685C /* Build configuration list for PBXProject "libarc_support" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6260C1030018BDC00EE685C /* Debug */,
+				B6260C1130018BDC00EE685C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6260C1230018BDC00EE685C /* Build configuration list for PBXNativeTarget "libarc_support" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6260C1330018BDC00EE685C /* Debug */,
+				B6260C1430018BDC00EE685C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B6260C0530018BDB00EE685C /* Project object */;
+}
