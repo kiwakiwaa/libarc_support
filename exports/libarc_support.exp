@@ -8,6 +8,9 @@ _objc_retainAutoreleasedReturnValue
 _objc_unsafeClaimAutoreleasedReturnValue
 _objc_storeStrong
 _objc_retainBlock
+_objc_alloc
+_objc_allocWithZone
+_objc_alloc_init
 _objc_autoreleasePoolPush
 _objc_autoreleasePoolPop
 _objc_initWeak

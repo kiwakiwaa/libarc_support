@@ -12,6 +12,7 @@
 		B6260C2330018BDE00EE685C /* arc_weak_runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = B6260C2430018BDE00EE685C /* arc_weak_runtime.m */; };
 		B6260C2630018BDF00EE685C /* arc_pool.m in Sources */ = {isa = PBXBuildFile; fileRef = B6260C2530018BDF00EE685C /* arc_pool.m */; };
 		B6260C2830018BE000EE685C /* arc_bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B6260C2730018BE000EE685C /* arc_bridge.m */; };
+		B6260C3030018BE200EE685C /* arc_alloc.m in Sources */ = {isa = PBXBuildFile; fileRef = B6260C2F30018BE200EE685C /* arc_alloc.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B6260C2430018BDE00EE685C /* arc_weak_runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arc_weak_runtime.m; sourceTree = "<group>"; };
 		B6260C2530018BDF00EE685C /* arc_pool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arc_pool.m; sourceTree = "<group>"; };
 		B6260C2730018BE000EE685C /* arc_bridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arc_bridge.m; sourceTree = "<group>"; };
+		B6260C2F30018BE200EE685C /* arc_alloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arc_alloc.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				B6260C1F30018BDD00EE685C /* arc_core.m */,
+				B6260C2F30018BE200EE685C /* arc_alloc.m */,
 				B6260C2730018BE000EE685C /* arc_bridge.m */,
 				B6260C2530018BDF00EE685C /* arc_pool.m */,
 				B6260C2130018BDE00EE685C /* arc_weak_table.m */,
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6260C2030018BDD00EE685C /* arc_core.m in Sources */,
+				B6260C3030018BE200EE685C /* arc_alloc.m in Sources */,
 				B6260C2830018BE000EE685C /* arc_bridge.m in Sources */,
 				B6260C2630018BDF00EE685C /* arc_pool.m in Sources */,
 				B6260C2230018BDE00EE685C /* arc_weak_table.m in Sources */,

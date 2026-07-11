@@ -16,6 +16,7 @@ typedef id libarc_support_id;
 #else
 typedef struct objc_object *libarc_support_id;
 #endif
+typedef struct objc_class *libarc_support_class;
 typedef const void *libarc_support_objectptr_t;
 
 LIBARC_SUPPORT_EXPORT libarc_support_id objc_retain(libarc_support_id value);
@@ -30,6 +31,10 @@ LIBARC_SUPPORT_EXPORT libarc_support_id objc_unsafeClaimAutoreleasedReturnValue(
 
 LIBARC_SUPPORT_EXPORT void objc_storeStrong(libarc_support_id *object, libarc_support_id value);
 LIBARC_SUPPORT_EXPORT libarc_support_id objc_retainBlock(libarc_support_id value);
+
+LIBARC_SUPPORT_EXPORT libarc_support_id objc_alloc(libarc_support_class cls);
+LIBARC_SUPPORT_EXPORT libarc_support_id objc_allocWithZone(libarc_support_class cls);
+LIBARC_SUPPORT_EXPORT libarc_support_id objc_alloc_init(libarc_support_class cls);
 
 LIBARC_SUPPORT_EXPORT void *objc_autoreleasePoolPush(void);
 LIBARC_SUPPORT_EXPORT void objc_autoreleasePoolPop(void *pool);

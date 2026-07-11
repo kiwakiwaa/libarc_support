@@ -21,6 +21,7 @@ WEAK_PRUNE_TEST_EXE="${TMPDIR:-/tmp}/arc_weak_table_pruning-$ARCH"
 WEAK_CONCURRENCY_TEST_EXE="${TMPDIR:-/tmp}/arc_weak_concurrency-$ARCH"
 POOL_TEST_EXE="${TMPDIR:-/tmp}/arc_pool_lifetime-$ARCH"
 BRIDGE_TEST_EXE="${TMPDIR:-/tmp}/arc_bridge_identity-$ARCH"
+ALLOC_TEST_EXE="${TMPDIR:-/tmp}/arc_alloc_lifetime-$ARCH"
 
 if [ "${BLOCKS_RUNTIME_LDFLAGS+set}" != set ]; then
     BLOCKS_RUNTIME_LDFLAGS=
@@ -62,6 +63,7 @@ build_manually()
     OBJECTS=
     for src in \
         src/arc_core.m \
+        src/arc_alloc.m \
         src/arc_bridge.m \
         src/arc_pool.m \
         src/arc_weak_table.m \
@@ -203,3 +205,14 @@ $ARC_CC \
     -o "$BRIDGE_TEST_EXE"
 
 DYLD_LIBRARY_PATH="$BUILD_DIR" "$BRIDGE_TEST_EXE"
+
+$ARC_CC \
+    $COMMON_CFLAGS \
+    tests/arc_alloc_lifetime.m \
+    "$DYLIB" \
+    -framework Foundation \
+    -lobjc \
+    $BLOCKS_RUNTIME_LDFLAGS \
+    -o "$ALLOC_TEST_EXE"
+
+DYLD_LIBRARY_PATH="$BUILD_DIR" "$ALLOC_TEST_EXE"
