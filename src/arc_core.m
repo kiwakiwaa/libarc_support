@@ -71,3 +71,11 @@ libarc_support_id objc_retainBlock(libarc_support_id value)
 {
     return (libarc_support_id)_Block_copy(value);
 }
+
+void libarc_support_clear_copied_object_pointer(void *object)
+{
+    // fragile runtime copies bitwise-copy ARC object pointer slots.
+    // clear the copied slot before ARC stores into it so the destination is initialised
+    // instead of mistaken for an already-owned value.
+    *(void **)object = 0;
+}

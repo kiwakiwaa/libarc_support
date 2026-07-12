@@ -31,6 +31,7 @@ LIBARC_SUPPORT_EXPORT libarc_support_id objc_unsafeClaimAutoreleasedReturnValue(
 
 LIBARC_SUPPORT_EXPORT void objc_storeStrong(libarc_support_id *object, libarc_support_id value);
 LIBARC_SUPPORT_EXPORT libarc_support_id objc_retainBlock(libarc_support_id value);
+LIBARC_SUPPORT_EXPORT void libarc_support_clear_copied_object_pointer(void *object);
 
 LIBARC_SUPPORT_EXPORT libarc_support_id objc_alloc(libarc_support_class cls);
 LIBARC_SUPPORT_EXPORT libarc_support_id objc_allocWithZone(libarc_support_class cls);
