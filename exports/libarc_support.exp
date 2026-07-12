@@ -9,6 +9,9 @@ _objc_unsafeClaimAutoreleasedReturnValue
 _objc_storeStrong
 _objc_retainBlock
 _libarc_support_clear_copied_object_pointer
+_objc_getProperty
+_objc_setProperty
+_objc_enumerationMutation
 _objc_alloc
 _objc_allocWithZone
 _objc_alloc_init

@@ -191,6 +191,8 @@
 					"-lobjc",
 					"-framework",
 					CoreFoundation,
+					"-framework",
+					Foundation,
 					"$(BLOCKS_RUNTIME_LDFLAGS)",
 				);
 				SDKROOT = macosx;
@@ -224,6 +226,8 @@
 					"-lobjc",
 					"-framework",
 					CoreFoundation,
+					"-framework",
+					Foundation,
 					"$(BLOCKS_RUNTIME_LDFLAGS)",
 				);
 				SDKROOT = macosx;

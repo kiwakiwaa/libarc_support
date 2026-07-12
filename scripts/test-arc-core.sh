@@ -22,6 +22,8 @@ WEAK_CONCURRENCY_TEST_EXE="${TMPDIR:-/tmp}/arc_weak_concurrency-$ARCH"
 POOL_TEST_EXE="${TMPDIR:-/tmp}/arc_pool_lifetime-$ARCH"
 BRIDGE_TEST_EXE="${TMPDIR:-/tmp}/arc_bridge_identity-$ARCH"
 ALLOC_TEST_EXE="${TMPDIR:-/tmp}/arc_alloc_lifetime-$ARCH"
+PROPERTY_TEST_EXE="${TMPDIR:-/tmp}/arc_property_runtime-$ARCH"
+PROPERTY_CODEGEN_TEST_EXE="${TMPDIR:-/tmp}/arc_property_codegen-$ARCH"
 
 if [ "${BLOCKS_RUNTIME_LDFLAGS+set}" != set ]; then
     BLOCKS_RUNTIME_LDFLAGS=
@@ -53,7 +55,7 @@ build_with_xcodebuild()
         SDKROOT="$XCODE_SDKROOT" \
         MACOSX_DEPLOYMENT_TARGET="$MACOSX_DEPLOYMENT_TARGET" \
         BLOCKS_RUNTIME_LDFLAGS="$BLOCKS_RUNTIME_LDFLAGS" \
-        OTHER_LDFLAGS="-lobjc -framework CoreFoundation $BLOCKS_RUNTIME_LDFLAGS -exported_symbols_list exports/libarc_support.exp" \
+        OTHER_LDFLAGS="-lobjc -framework CoreFoundation -framework Foundation $BLOCKS_RUNTIME_LDFLAGS -exported_symbols_list exports/libarc_support.exp" \
         build
 }
 
@@ -83,6 +85,7 @@ build_manually()
         -exported_symbols_list "$EXPORTS_FILE" \
         $OBJECTS \
         -framework CoreFoundation \
+        -framework Foundation \
         -lobjc \
         $BLOCKS_RUNTIME_LDFLAGS \
         -o "$DYLIB"
@@ -216,3 +219,30 @@ $ARC_CC \
     -o "$ALLOC_TEST_EXE"
 
 DYLD_LIBRARY_PATH="$BUILD_DIR" "$ALLOC_TEST_EXE"
+
+$ARC_CC \
+    $COMMON_CFLAGS \
+    tests/arc_property_runtime.m \
+    "$DYLIB" \
+    -framework Foundation \
+    -lobjc \
+    $BLOCKS_RUNTIME_LDFLAGS \
+    -o "$PROPERTY_TEST_EXE"
+
+DYLD_LIBRARY_PATH="$BUILD_DIR" "$PROPERTY_TEST_EXE"
+
+if [ -n "${ARC_CODEGEN_CC:-}" ]; then
+    $ARC_CODEGEN_CC \
+        $COMMON_CFLAGS \
+        -Xclang -fobjc-arc \
+        -fobjc-runtime=macosx-fragile-10.7 \
+        -Xclang -fobjc-runtime-has-weak \
+        tests/arc_property_codegen.m \
+        "$DYLIB" \
+        -framework Foundation \
+        -lobjc \
+        $BLOCKS_RUNTIME_LDFLAGS \
+        -o "$PROPERTY_CODEGEN_TEST_EXE"
+
+    DYLD_LIBRARY_PATH="$BUILD_DIR" "$PROPERTY_CODEGEN_TEST_EXE"
+fi
