@@ -147,6 +147,61 @@ static void test_retain_block_copies_stack_block(void)
     _Block_release(copiedBlock);
 }
 
+static void test_generic_retain_release_block(void)
+{
+    int captured = 42;
+    int (^stackBlock)(void) = ^{
+        return captured;
+    };
+
+    int (^retainedBlock)(void) = (int (^)(void))objc_retain((id)stackBlock);
+    arc_test_assert(retainedBlock != stackBlock, "objc_retain copies stack block");
+    arc_test_assert(retainedBlock() == 42, "generic retained block remains callable");
+    objc_release((id)retainedBlock);
+}
+
+static void test_generic_global_block(void)
+{
+    int (^globalBlock)(void) = ^{
+        return 43;
+    };
+
+    id retainedBlock = objc_retain((id)globalBlock);
+    arc_test_assert(retainedBlock == (id)globalBlock, "objc_retain preserves global block identity");
+    arc_test_assert(((int (^)(void))retainedBlock)() == 43, "generic retained global block remains callable");
+    objc_release(retainedBlock);
+}
+
+static void test_generic_block_autorelease(void)
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    int captured = 44;
+    int (^stackBlock)(void) = ^{
+        return captured;
+    };
+
+    int (^retainedBlock)(void) = (int (^)(void))objc_retain((id)stackBlock);
+    arc_test_assert(objc_autorelease((id)retainedBlock) == (id)retainedBlock, "objc_autorelease preserves block identity");
+    arc_test_assert(retainedBlock() == 44, "autoreleased block remains callable before pool drains");
+    [pool drain];
+}
+
+static void test_copy_property_block(void)
+{
+    struct {
+        id slot;
+    } storage = { nil };
+    int captured = 45;
+    int (^stackBlock)(void) = ^{
+        return captured;
+    };
+
+    objc_setProperty((id)&storage, NULL, offsetof(typeof(storage), slot), (id)stackBlock, 0, 1);
+    arc_test_assert(storage.slot != (id)stackBlock, "copy property copies stack block");
+    arc_test_assert(((int (^)(void))storage.slot)() == 45, "copy property block remains callable");
+    objc_release(storage.slot);
+}
+
 int main(void)
 {
     test_nil();
@@ -157,6 +212,10 @@ int main(void)
     test_store_strong_self_assignment();
     test_retain_block_nil();
     test_retain_block_copies_stack_block();
+    test_generic_retain_release_block();
+    test_generic_global_block();
+    test_generic_block_autorelease();
+    test_copy_property_block();
     puts("PASS arc_core_lifetime");
     return 0;
 }

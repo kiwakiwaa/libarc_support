@@ -1,8 +1,10 @@
 #include "libarc_support/arc_runtime.h"
 
+#include <dlfcn.h>
 #include <pthread.h>
 
 #import <Foundation/NSException.h>
+#import <Foundation/NSObject.h>
 #import <Foundation/NSString.h>
 
 #if defined(__has_feature)
@@ -18,6 +20,61 @@
 @end
 
 extern void *_Block_copy(const void *aBlock);
+extern void _Block_release(const void *aBlock);
+extern void *_NSConcreteGlobalBlock[];
+extern void *_NSConcreteMallocBlock[];
+extern void *_NSConcreteStackBlock[];
+
+static pthread_once_t BlockClassesOnce = PTHREAD_ONCE_INIT;
+static void *GlobalBlockClass;
+static void *MallocBlockClass;
+static void *StackBlockClass;
+
+static void findBlockClasses(void)
+{
+    GlobalBlockClass = dlsym(RTLD_DEFAULT, "_NSConcreteGlobalBlock");
+    MallocBlockClass = dlsym(RTLD_DEFAULT, "_NSConcreteMallocBlock");
+    StackBlockClass = dlsym(RTLD_DEFAULT, "_NSConcreteStackBlock");
+}
+
+static int isBlocksRuntimeBlock(const void *value)
+{
+    if (value == NULL) {
+        return 0;
+    }
+
+    void *isa = *(void *const *)value;
+    if (isa == _NSConcreteGlobalBlock || isa == _NSConcreteMallocBlock || isa == _NSConcreteStackBlock) {
+        return 1;
+    }
+
+    pthread_once(&BlockClassesOnce, findBlockClasses);
+    return isa == GlobalBlockClass || isa == MallocBlockClass || isa == StackBlockClass;
+}
+
+@interface LibarcSupportBlockAutorelease : NSObject {
+    const void *block;
+}
+- (id)initWithBlock:(const void *)value;
+@end
+
+@implementation LibarcSupportBlockAutorelease
+
+- (id)initWithBlock:(const void *)value
+{
+    if ((self = [super init])) {
+        block = value;
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    _Block_release(block);
+    [super dealloc];
+}
+
+@end
 
 @protocol LibarcSupportCopying
 - (id)copy;
@@ -28,16 +85,27 @@ static pthread_mutex_t PropertyLock = PTHREAD_MUTEX_INITIALIZER;
 
 libarc_support_id objc_retain(libarc_support_id value)
 {
+    if (isBlocksRuntimeBlock(value)) {
+        return (libarc_support_id)_Block_copy(value);
+    }
     return [(id<LibarcSupportRetainRelease>)value retain];
 }
 
 void objc_release(libarc_support_id value)
 {
+    if (isBlocksRuntimeBlock(value)) {
+        _Block_release(value);
+        return;
+    }
     [(id<LibarcSupportRetainRelease>)value release];
 }
 
 libarc_support_id objc_autorelease(libarc_support_id value)
 {
+    if (isBlocksRuntimeBlock(value)) {
+        [[[LibarcSupportBlockAutorelease alloc] initWithBlock:value] autorelease];
+        return value;
+    }
     return [(id<LibarcSupportRetainRelease>)value autorelease];
 }
 
@@ -121,6 +189,9 @@ void objc_setProperty(
 
     if (copy == 2) {
         newValue = [(id<LibarcSupportCopying>)value mutableCopy];
+    }
+    else if (copy != 0 && isBlocksRuntimeBlock(value)) {
+        newValue = (libarc_support_id)_Block_copy(value);
     }
     else if (copy != 0) {
         newValue = [(id<LibarcSupportCopying>)value copy];

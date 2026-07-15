@@ -24,6 +24,7 @@ BRIDGE_TEST_EXE="${TMPDIR:-/tmp}/arc_bridge_identity-$ARCH"
 ALLOC_TEST_EXE="${TMPDIR:-/tmp}/arc_alloc_lifetime-$ARCH"
 PROPERTY_TEST_EXE="${TMPDIR:-/tmp}/arc_property_runtime-$ARCH"
 PROPERTY_CODEGEN_TEST_EXE="${TMPDIR:-/tmp}/arc_property_codegen-$ARCH"
+BLOCK_CODEGEN_TEST_EXE="${TMPDIR:-/tmp}/arc_block_codegen-$ARCH"
 
 if [ "${BLOCKS_RUNTIME_LDFLAGS+set}" != set ]; then
     BLOCKS_RUNTIME_LDFLAGS=
@@ -245,4 +246,19 @@ if [ -n "${ARC_CODEGEN_CC:-}" ]; then
         -o "$PROPERTY_CODEGEN_TEST_EXE"
 
     DYLD_LIBRARY_PATH="$BUILD_DIR" "$PROPERTY_CODEGEN_TEST_EXE"
+
+    $ARC_CODEGEN_CC \
+        $COMMON_CFLAGS \
+        -Xclang -fobjc-arc \
+        -fblocks \
+        -fobjc-runtime=macosx-fragile-10.7 \
+        -Xclang -fobjc-runtime-has-weak \
+        tests/arc_block_codegen.m \
+        "$DYLIB" \
+        -framework Foundation \
+        -lobjc \
+        $BLOCKS_RUNTIME_LDFLAGS \
+        -o "$BLOCK_CODEGEN_TEST_EXE"
+
+    DYLD_LIBRARY_PATH="$BUILD_DIR" "$BLOCK_CODEGEN_TEST_EXE"
 fi
