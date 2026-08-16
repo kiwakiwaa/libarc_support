@@ -1,12 +1,12 @@
+#include "test_entries.h"
 #import <Foundation/Foundation.h>
 
-@interface PropertyCodegenHost : NSObject
-{
+@interface PropertyCodegenHost : NSObject {
     NSObject *_value;
     NSString *_name;
 }
-@property(nonatomic, strong) NSObject *value;
-@property(atomic, copy) NSString *name;
+@property (nonatomic, strong) NSObject *value;
+@property (atomic, copy) NSString *name;
 @end
 
 @implementation PropertyCodegenHost
@@ -14,7 +14,7 @@
 @synthesize name = _name;
 @end
 
-int main(void)
+int libarc_test_property_codegen(void)
 {
     @autoreleasepool {
         PropertyCodegenHost *host = [[PropertyCodegenHost alloc] init];
@@ -27,7 +27,6 @@ int main(void)
         if (host.value != value || ![host.name isEqual:@"before"] || host.name == name) {
             return 1;
         }
-
     }
 
     puts("arc_property_codegen: PASS");

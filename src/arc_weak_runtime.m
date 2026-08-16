@@ -1,5 +1,5 @@
-#include "libarc_support/arc_runtime.h"
 #include "arc_weak_table.h"
+#include "libarc_support/arc_runtime.h"
 
 #if defined(__has_feature)
 #if __has_feature(objc_arc)

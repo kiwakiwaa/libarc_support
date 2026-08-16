@@ -1,5 +1,6 @@
-#import <Foundation/Foundation.h>
 #include "libarc_support/arc_runtime.h"
+#include "test_entries.h"
+#import <Foundation/Foundation.h>
 
 @interface BridgeTracker : NSObject {
 @public
@@ -62,7 +63,7 @@ static void test_identity_and_no_lifetime_side_effects(void)
     [object release];
 }
 
-int main(void)
+int libarc_test_bridge_identity(void)
 {
     test_nil();
     test_identity_and_no_lifetime_side_effects();

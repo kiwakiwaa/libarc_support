@@ -1,5 +1,6 @@
-#import <Foundation/Foundation.h>
 #include "libarc_support/arc_runtime.h"
+#include "test_entries.h"
+#import <Foundation/Foundation.h>
 
 @interface RVTracker : NSObject {
 @public
@@ -119,7 +120,7 @@ static void test_unsafe_claim_autoreleased_return_value(void)
     [object release];
 }
 
-int main(void)
+int libarc_test_return_value_lifetime(void)
 {
     test_nil();
     test_retain_autorelease();

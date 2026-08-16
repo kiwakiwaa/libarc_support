@@ -1,10 +1,9 @@
-#import <Foundation/Foundation.h>
-#include "libarc_support/arc_runtime.h"
 #include "arc_objc_compat.h"
+#include "arc_weak_table.h"
+#include "libarc_support/arc_runtime.h"
+#include "test_entries.h"
+#import <Foundation/Foundation.h>
 #include <stddef.h>
-
-size_t arc_weak_debug_registered_object_count(void);
-size_t arc_weak_debug_deallocating_object_count(void);
 
 @interface PruneTracker : NSObject
 @end
@@ -125,7 +124,7 @@ static void test_inherited_swizzle_does_not_mutate_superclass(void)
     arc_prune_assert(slot == nil, "inherited swizzle still zeroes weak slot");
 }
 
-int main(void)
+int libarc_test_weak_table_pruning(void)
 {
     test_empty_address_sets_are_pruned();
     test_deallocating_marker_is_removed_after_release();

@@ -1,5 +1,6 @@
-#import <Foundation/Foundation.h>
 #include "libarc_support/arc_runtime.h"
+#include "test_entries.h"
+#import <Foundation/Foundation.h>
 
 static unsigned gAllocCalls;
 static unsigned gAllocWithZoneCalls;
@@ -91,7 +92,7 @@ static void test_alloc_init_message(void)
     [object release];
 }
 
-int main(void)
+int libarc_test_alloc_lifetime(void)
 {
     test_nil_class();
     test_alloc_message();

@@ -1,5 +1,7 @@
-#import <Foundation/Foundation.h>
+#include "arc_weak_table.h"
 #include "libarc_support/arc_runtime.h"
+#include "test_entries.h"
+#import <Foundation/Foundation.h>
 #include <pthread.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -17,13 +19,8 @@
 #define POOL_THREAD_COUNT 4
 #define POOL_ITERATIONS 1200
 
-#if defined(ARC_WEAK_TESTING)
-size_t arc_weak_debug_deallocating_object_count(void);
 #define ASSERT_NO_DEALLOCATING_MARKERS(message) \
     arc_concurrency_assert(arc_weak_debug_deallocating_object_count() == 0, message)
-#else
-#define ASSERT_NO_DEALLOCATING_MARKERS(message) ((void)0)
-#endif
 
 @interface StressObject : NSObject {
 @public
@@ -94,8 +91,7 @@ static unsigned gReentrantDeallocs = 0;
 
 @end
 
-struct StartGate
-{
+struct StartGate {
     pthread_mutex_t mutex;
     pthread_cond_t cond;
     int ready;
@@ -103,24 +99,21 @@ struct StartGate
     int target;
 };
 
-struct StableRaceContext
-{
+struct StableRaceContext {
     struct StartGate *gate;
     id *slots;
     StressObject **objects;
     int threadIndex;
 };
 
-struct DeallocLoadContext
-{
+struct DeallocLoadContext {
     struct StartGate *gate;
     volatile int *stop;
     id *slot;
     id expected;
 };
 
-struct PoolChurnContext
-{
+struct PoolChurnContext {
     struct StartGate *gate;
     int threadIndex;
 };
@@ -419,13 +412,8 @@ static void *pool_churn_thread(void *arg)
         arc_concurrency_assert(slot == object, "pool churn weak init stores object before pop");
         loaded = objc_loadWeakRetained(&slot);
         if (loaded != object) {
-#if defined(ARC_WEAK_TESTING)
             fprintf(stderr, "pool churn mismatch thread=%d iter=%d object=%p slot=%p loaded=%p deallocMarkers=%lu\n",
                 context->threadIndex, i, object, slot, loaded, (unsigned long)arc_weak_debug_deallocating_object_count());
-#else
-            fprintf(stderr, "pool churn mismatch thread=%d iter=%d object=%p slot=%p loaded=%p\n",
-                context->threadIndex, i, object, slot, loaded);
-#endif
         }
         arc_concurrency_assert(loaded == object, "pool churn loaded object before pop");
         [loaded release];
@@ -463,7 +451,7 @@ static void test_autorelease_pool_churn_under_threads(void)
     ASSERT_NO_DEALLOCATING_MARKERS("pool churn left deallocating marker");
 }
 
-int main(void)
+int libarc_test_weak_concurrency(void)
 {
     test_concurrent_weak_stores_and_loads();
     test_concurrent_dealloc_while_loading();

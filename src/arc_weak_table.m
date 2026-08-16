@@ -1,8 +1,6 @@
-/*
- * Adapted from PLWeakCompatibilityCore.mm.
- * Copyright (c) 2012 Plausible Labs Cooperative, Inc.
- * Used under the BSD-3-Clause license. See vendor/PLWeakCompatibility/LICENSE.bsd-3-clause.txt.
- */
+// Adapted from PLWeakCompatibilityCore.mm.
+// Copyright (c) 2012 Plausible Labs Cooperative, Inc.
+// Used under the BSD 3-Clause licence in vendor/PLWeakCompatibility/LICENSE.
 
 #include "arc_weak_table.h"
 
@@ -12,8 +10,8 @@
 #endif
 #endif
 
-#include "libarc_support/arc_runtime.h"
 #include "arc_objc_compat.h"
+#include "libarc_support/arc_runtime.h"
 
 #include <CoreFoundation/CoreFoundation.h>
 #include <pthread.h>
@@ -34,8 +32,7 @@ static SEL releaseSELSwizzled;
 static SEL deallocSEL;
 static SEL deallocSELSwizzled;
 
-struct TLS
-{
+struct TLS {
     CFMutableDictionaryRef lastReleaseClassTable;
     CFMutableDictionaryRef lastDeallocClassTable;
     CFMutableBagRef activeDeallocObjects;
@@ -130,6 +127,8 @@ arc_weak_object_t arc_weak_load_retained(arc_weak_object_t *location)
 
     pthread_mutex_lock(&gWeakMutex);
     obj = *location;
+    // A final release may still revive the object through another owner. Wait
+    // until that release completes before deciding whether a +1 load is safe.
     while (obj != NULL && CFBagContainsValue(gReleasingObjects, obj)) {
         pthread_cond_wait(&gReleasingObjectsCond, &gWeakMutex);
         obj = *location;
@@ -290,6 +289,8 @@ static void SwizzledDeallocIMP(arc_weak_object_t self, SEL _cmd)
     Class targetClass;
     void (*origIMP)(arc_weak_object_t, SEL);
 
+    // Zero every registered location before user dealloc code can attempt to
+    // store the dying object into another weak slot.
     pthread_mutex_lock(&gWeakMutex);
     CFSetAddValue(gDeallocatingObjects, self);
     addresses = (CFSetRef)CFDictionaryGetValue(gObjectToAddressesMap, self);
@@ -360,7 +361,6 @@ static void EnsureDeallocationTrigger(arc_weak_object_t obj)
     CFSetAddValue(gSwizzledClasses, cls);
 }
 
-#if defined(ARC_WEAK_TESTING)
 size_t arc_weak_debug_registered_object_count(void)
 {
     size_t count;
@@ -386,4 +386,3 @@ size_t arc_weak_debug_deallocating_object_count(void)
 
     return count;
 }
-#endif

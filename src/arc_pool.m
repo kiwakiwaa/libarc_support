@@ -32,11 +32,11 @@ static void libarc_support_init_autorelease_pool(void)
 void *objc_autoreleasePoolPush(void)
 {
     pthread_once(&sAutoreleasePoolOnce, libarc_support_init_autorelease_pool);
-    return (void *)objc_msgSend((id)sAutoreleasePoolClass, sNewSelector);
+    return (void *)((id (*)(id, SEL))objc_msgSend)((id)sAutoreleasePoolClass, sNewSelector);
 }
 
 void objc_autoreleasePoolPop(void *pool)
 {
     pthread_once(&sAutoreleasePoolOnce, libarc_support_init_autorelease_pool);
-    objc_msgSend((id)pool, sDrainSelector);
+    ((void (*)(id, SEL))objc_msgSend)((id)pool, sDrainSelector);
 }

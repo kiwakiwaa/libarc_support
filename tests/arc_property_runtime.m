@@ -1,14 +1,17 @@
 #import <Foundation/Foundation.h>
 
 #include "libarc_support/arc_runtime.h"
+#include "test_entries.h"
+#include <errno.h>
+#include <sys/wait.h>
+#include <unistd.h>
 
-@interface ProbeValue : NSObject <NSCopying, NSMutableCopying>
-{
+@interface ProbeValue : NSObject <NSCopying, NSMutableCopying> {
     int *_deallocations;
     NSString *_kind;
 }
 - (id)initWithDeallocations:(int *)deallocations kind:(NSString *)kind;
-@property(nonatomic, readonly) NSString *kind;
+@property (nonatomic, readonly) NSString *kind;
 @end
 
 @implementation ProbeValue
@@ -20,20 +23,37 @@
     }
     return self;
 }
-- (NSString *)kind { return _kind; }
-- (id)copyWithZone:(NSZone *)zone { return [[ProbeValue allocWithZone:zone] initWithDeallocations:_deallocations kind:@"copy"]; }
-- (id)mutableCopyWithZone:(NSZone *)zone { return [[ProbeValue allocWithZone:zone] initWithDeallocations:_deallocations kind:@"mutableCopy"]; }
-- (void)dealloc { ++*_deallocations; [_kind release]; [super dealloc]; }
+- (NSString *)kind
+{
+    return _kind;
+}
+- (id)copyWithZone:(NSZone *)zone
+{
+    return [[ProbeValue allocWithZone:zone] initWithDeallocations:_deallocations kind:@"copy"];
+}
+- (id)mutableCopyWithZone:(NSZone *)zone
+{
+    return [[ProbeValue allocWithZone:zone] initWithDeallocations:_deallocations kind:@"mutableCopy"];
+}
+- (void)dealloc
+{
+    ++*_deallocations;
+    [_kind release];
+    [super dealloc];
+}
 @end
 
-@interface PropertyHost : NSObject
-{
+@interface PropertyHost : NSObject {
 @public
     id _value;
 }
 @end
 @implementation PropertyHost
-- (void)dealloc { [_value release]; [super dealloc]; }
+- (void)dealloc
+{
+    [_value release];
+    [super dealloc];
+}
 @end
 
 static void test_assert(BOOL condition, NSString *message)
@@ -44,7 +64,36 @@ static void test_assert(BOOL condition, NSString *message)
     }
 }
 
-int main(void)
+static void test_enumeration_mutation(void)
+{
+    pid_t child = fork();
+    test_assert(child >= 0, @"enumeration mutation child process");
+
+    if (child == 0) {
+        @try {
+            objc_enumerationMutation(@"probe");
+        }
+        @catch (NSException *exception) {
+            // Clang 3.4 corrupts the caller frame after unwinding a fragile
+            // PowerPC exception, so terminate this isolated probe in-place.
+            BOOL correctName = [[exception name] isEqual:NSGenericException];
+            BOOL correctReason = [[exception reason] isEqual:@"Collection probe was mutated while being enumerated."];
+            _exit(correctName && correctReason ? 0 : 1);
+        }
+        _exit(1);
+    }
+
+    int status;
+    pid_t waited;
+    do {
+        waited = waitpid(child, &status, 0);
+    } while (waited < 0 && errno == EINTR);
+
+    test_assert(waited == child, @"enumeration mutation child wait");
+    test_assert(WIFEXITED(status) && WEXITSTATUS(status) == 0, @"enumeration mutation exception");
+}
+
+int libarc_test_property_runtime(void)
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     PropertyHost *host = [[PropertyHost alloc] init];
@@ -68,13 +117,11 @@ int main(void)
     objc_setProperty(host, 0, offset, nil, 1, 0);
     test_assert(host->_value == nil, @"nil assignment");
 
-    BOOL mutationRaised = NO;
-    @try { objc_enumerationMutation(host); }
-    @catch (NSException *exception) { mutationRaised = [[exception name] isEqual:NSGenericException]; }
-    test_assert(mutationRaised, @"enumeration mutation exception");
-
     [host release];
     [pool drain];
+
+    test_enumeration_mutation();
+
     puts("arc_property_runtime: PASS");
     return 0;
 }

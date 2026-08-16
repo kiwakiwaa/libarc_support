@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#include <stddef.h>
+
 typedef void *arc_weak_object_t;
 
 #if defined(__GNUC__)
@@ -20,6 +22,8 @@ ARC_WEAK_INTERNAL arc_weak_object_t arc_weak_load(arc_weak_object_t *location);
 ARC_WEAK_INTERNAL arc_weak_object_t arc_weak_load_retained(arc_weak_object_t *location);
 ARC_WEAK_INTERNAL void arc_weak_copy(arc_weak_object_t *to, arc_weak_object_t *from);
 ARC_WEAK_INTERNAL void arc_weak_move(arc_weak_object_t *to, arc_weak_object_t *from);
+ARC_WEAK_INTERNAL size_t arc_weak_debug_registered_object_count(void);
+ARC_WEAK_INTERNAL size_t arc_weak_debug_deallocating_object_count(void);
 
 #undef ARC_WEAK_INTERNAL
 

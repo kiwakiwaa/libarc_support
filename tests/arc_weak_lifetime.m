@@ -1,5 +1,6 @@
-#import <Foundation/Foundation.h>
 #include "libarc_support/arc_runtime.h"
+#include "test_entries.h"
+#import <Foundation/Foundation.h>
 #include <pthread.h>
 
 @interface WeakTracker : NSObject {
@@ -159,8 +160,7 @@ static void test_store_during_dealloc_stores_nil(void)
     arc_weak_assert(gDeallocStoreSlot == nil, "objc_storeWeak stores nil for deallocating target");
 }
 
-struct WeakRaceContext
-{
+struct WeakRaceContext {
     id slot;
     WeakTracker *object;
 };
@@ -212,7 +212,7 @@ static void test_store_load_race_smoke(void)
     [context.object release];
 }
 
-int main(void)
+int libarc_test_weak_lifetime(void)
 {
     test_init_store_load_destroy();
     test_store_replaces_and_clears();

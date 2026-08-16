@@ -1,0 +1,45 @@
+libarc_support 1.1.0
+====================
+
+libarc_support supplies the ARC and Blocks runtime functions needed by
+applications which still support Mac OS X 10.4 and later.  PowerPC, i386 and
+x86_64 are supported.  The x86_64 slice requires Mac OS X 10.5 or later.  The
+static library is the recommended product.
+
+Using it in an Xcode project
+----------------------------
+
+1. Drag libarc_support.xcodeproj into your project.
+2. Add libarc_support_static as a target dependency.
+3. Link libarc_support.a to your application target.
+
+That is all.
+
+The libarc_support_dylib target builds libarc_support.dylib for applications
+which prefer a dynamic library.
+
+CMake users may add this directory with add_subdirectory() and link either
+libarc_support::static or libarc_support::dynamic.  For example:
+
+    add_subdirectory(path/to/libarc_support)
+    target_link_libraries(MyApplication PRIVATE libarc_support::static)
+
+Building and testing
+--------------------
+
+Open libarc_support.xcodeproj and build libarc_support_static or
+libarc_support_dylib.  Build the check target to run both the native runtime
+tests and the ARC code-generation tests.
+
+Use ARCHS=ppc when building the PowerPC slice with a PowerPC-capable
+toolchain.  Xcode 4.2 on Snow Leopard builds the i386 and x86_64 slices.
+
+The library itself is compiled without ARC.  Application source may use ARC
+and Blocks normally with a compatible Clang compiler.
+
+Licence
+-------
+
+Original code is Copyright © 2026 Caoimhe and distributed under the MIT
+License.  Vendored code retains its upstream licence.  See LICENSE and the
+licence files below vendor/.  THIRD-PARTY records the included components.

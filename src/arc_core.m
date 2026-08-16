@@ -48,6 +48,8 @@ static int isBlocksRuntimeBlock(const void *value)
         return 1;
     }
 
+    // A block may bind to the bundled concrete classes or to an earlier
+    // process-wide Blocks runtime, so recognise both sets of class objects.
     pthread_once(&BlockClassesOnce, findBlockClasses);
     return isa == GlobalBlockClass || isa == MallocBlockClass || isa == StackBlockClass;
 }
@@ -154,9 +156,8 @@ libarc_support_id objc_retainBlock(libarc_support_id value)
 
 void libarc_support_clear_copied_object_pointer(void *object)
 {
-    // fragile runtime copies bitwise-copy ARC object pointer slots.
-    // clear the copied slot before ARC stores into it so the destination is initialised
-    // instead of mistaken for an already-owned value.
+    // The fragile runtime bitwise-copies ARC object pointer slots. Clear the
+    // destination before ARC treats it as an already-owned value.
     *(void **)object = 0;
 }
 
@@ -189,14 +190,11 @@ void objc_setProperty(
 
     if (copy == 2) {
         newValue = [(id<LibarcSupportCopying>)value mutableCopy];
-    }
-    else if (copy != 0 && isBlocksRuntimeBlock(value)) {
+    } else if (copy != 0 && isBlocksRuntimeBlock(value)) {
         newValue = (libarc_support_id)_Block_copy(value);
-    }
-    else if (copy != 0) {
+    } else if (copy != 0) {
         newValue = [(id<LibarcSupportCopying>)value copy];
-    }
-    else {
+    } else {
         newValue = objc_retain(value);
     }
 
@@ -213,6 +211,16 @@ void objc_setProperty(
 
 void objc_enumerationMutation(libarc_support_id object)
 {
-    [NSException raise:NSGenericException format:@"Collection %@ was mutated while being enumerated.", object];
-    __builtin_unreachable();
+    NSString *objectDescription = [(id)object description];
+    if (objectDescription == nil) {
+        objectDescription = @"(null)";
+    }
+
+    // Clang 3.4 mispasses Objective-C varargs on PowerPC, so build the
+    // equivalent diagnostic with fixed-arity string methods on Tiger.
+    NSString *reason = [@"Collection " stringByAppendingString:objectDescription];
+    reason = [reason stringByAppendingString:@" was mutated while being enumerated."];
+    @throw [NSException exceptionWithName:NSGenericException
+                                   reason:reason
+                                 userInfo:nil];
 }

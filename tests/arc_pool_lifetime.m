@@ -1,5 +1,6 @@
-#import <Foundation/Foundation.h>
 #include "libarc_support/arc_runtime.h"
+#include "test_entries.h"
+#import <Foundation/Foundation.h>
 
 enum {
     PoolTrackerOuter = 1,
@@ -92,7 +93,7 @@ static void test_nested_pools_drain_inside_out(void)
     arc_pool_assert(gOuterDeallocs == outerBefore + 1, "outer object deallocated by outer pop");
 }
 
-int main(void)
+int libarc_test_pool_lifetime(void)
 {
     test_push_pop_drains_pool();
     test_nested_pools_drain_inside_out();

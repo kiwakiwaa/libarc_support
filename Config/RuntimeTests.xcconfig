@@ -1,0 +1,10 @@
+ARCHS = i386 x86_64
+CLANG_ENABLE_OBJC_ARC = NO
+GCC_VERSION = com.apple.compilers.llvm.clang.1_0
+// Apple Clang 3.0 miscompiles stack block literals at -Os on Snow Leopard.
+GCC_OPTIMIZATION_LEVEL = 0
+MACOSX_DEPLOYMENT_TARGET = 10.4
+OTHER_CFLAGS = -fblocks
+OTHER_LDFLAGS = -lobjc -framework CoreFoundation -framework Foundation
+PRODUCT_NAME = libarc_support_tests
+SKIP_INSTALL = YES

@@ -7,6 +7,18 @@ extern "C" {
 
 #include <stddef.h>
 
+/**
+ * ARC runtime entry points for legacy Objective-C runtimes.
+ *
+ * Applications normally use these functions through Clang-generated code and
+ * only need to link libarc_support once in the main executable.
+ */
+
+#define LIBARC_SUPPORT_VERSION_MAJOR 1
+#define LIBARC_SUPPORT_VERSION_MINOR 1
+#define LIBARC_SUPPORT_VERSION_PATCH 0
+#define LIBARC_SUPPORT_VERSION_STRING "1.1.0"
+
 #if defined(__GNUC__)
 #define LIBARC_SUPPORT_EXPORT __attribute__((visibility("default")))
 #else
@@ -15,10 +27,11 @@ extern "C" {
 
 #if defined(__OBJC__)
 typedef id libarc_support_id;
+typedef Class libarc_support_class;
 #else
 typedef struct objc_object *libarc_support_id;
-#endif
 typedef struct objc_class *libarc_support_class;
+#endif
 typedef const void *libarc_support_objectptr_t;
 
 LIBARC_SUPPORT_EXPORT libarc_support_id objc_retain(libarc_support_id value);

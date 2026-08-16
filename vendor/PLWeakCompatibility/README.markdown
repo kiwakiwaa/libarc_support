@@ -1,8 +1,6 @@
 PLWeakCompatibility
 ===================
 
-Imported for `libarc_support` weak-reference implementation work.
-
 Do you like ARC but need to support older OSes? Do you contemplate dropping support for Mac OS X 10.6 or iOS 4 just so you can use `__weak`? Good news! Now you can use `__weak` on those older OSes by just dropping a file into your project and adding a couple of compiler flags.
 
 `PLWeakCompatibility` is a set of stubs that implement the Objective-C runtime functions the compiler uses to make `__weak` work. It automatically calls through to the real runtime functions if they're present (i.e. your app is running on iOS5+ or Mac OS X 10.7+) and uses its own implementation if they're not.
@@ -30,10 +28,3 @@ Compatibility Notes
 `PLWeakCompatibility` *should* be fully compatible with any OS/architecture/compiler combination which supports ARC. Since the calls are generated at compile time, and the stubs simply call through to Apple's implementations when available, it's extremely unlikely that a future OS update will break an app that uses `PLWeakCompatibility`. All of the tricky business happens on OSes which will not receive further updates.
 
 It is possible that a future version of Xcode will include a compiler which does not get along with these stubs. We consider this possibility to be unlikely, but it's possible in theory. If it does happen, you may continue to build using an old compiler for as long as you support iOS 4 or Mac OS 10.6, and we also hope to be able to fix up any incompatibilities in the unlikely event that this occurs.
-
-Notes:
-
-- Files in this directory are kept unchanged as provenance/reference material.
-- Built code lives in `src/arc_weak_table.m` and `src/arc_weak_runtime.m`.
-- The built implementation adapts the PL internal weak table/dealloc-swizzle approach,
-  removes MAZeroingWeakRef and RTLD_NEXT fallthrough paths, and avoids ARC/ObjC++.

@@ -100,12 +100,12 @@ extern void _objc_flush_caches(Class cls);
 
 static inline Class arc_object_get_class(id obj)
 {
-#if defined(__clang__)
+#if defined(__clang__) && __clang_major__ >= 4
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-objc-isa-usage"
 #endif
     return obj == nil ? Nil : obj->isa;
-#if defined(__clang__)
+#if defined(__clang__) && __clang_major__ >= 4
 #pragma clang diagnostic pop
 #endif
 }

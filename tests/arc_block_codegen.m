@@ -1,9 +1,10 @@
+#include "test_entries.h"
 #import <Foundation/Foundation.h>
 
 @interface BlockHarness : NSObject {
     int (^storedBlock)(void);
 }
-@property(nonatomic, copy) int (^storedBlock)(void);
+@property (nonatomic, copy) int (^storedBlock)(void);
 + (int)invokeBlock:(int (^)(void))block;
 @end
 
@@ -49,21 +50,27 @@ static int invoke_local_block(void)
     return block();
 }
 
-int main(void)
+int libarc_test_block_codegen(void)
 {
     @autoreleasepool {
         int captured = 42;
-        arc_block_assert([BlockHarness invokeBlock:^{ return captured; }] == 42,
+        arc_block_assert([BlockHarness invokeBlock:^{
+            return captured;
+        }] == 42,
             "Objective-C block parameter");
         arc_block_assert(invoke_local_block() == 42, "strong local block");
 
         BlockHarness *harness = [[BlockHarness alloc] init];
-        harness.storedBlock = ^{ return captured + 1; };
+        harness.storedBlock = ^{
+            return captured + 1;
+        };
         arc_block_assert(harness.storedBlock() == 43, "copy block property");
         harness.storedBlock = nil;
 
         BlockCapture *capturedObject = [[BlockCapture alloc] init];
-        harness.storedBlock = ^{ return capturedObject != nil ? 44 : 0; };
+        harness.storedBlock = ^{
+            return capturedObject != nil ? 44 : 0;
+        };
         capturedObject = nil;
         arc_block_assert(captureDeallocations == 0, "copied block retains captured object");
         arc_block_assert(harness.storedBlock() == 44, "copied block accesses captured object");

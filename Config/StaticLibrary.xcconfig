@@ -1,0 +1,6 @@
+EXECUTABLE_PREFIX = lib
+GCC_SYMBOLS_PRIVATE_EXTERN = NO
+GCC_VERSION = com.apple.compilers.llvmgcc42
+PRODUCT_NAME = arc_support
+PUBLIC_HEADERS_FOLDER_PATH = include/libarc_support
+SKIP_INSTALL = YES

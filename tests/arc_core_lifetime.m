@@ -1,5 +1,6 @@
-#import <Foundation/Foundation.h>
 #include "libarc_support/arc_runtime.h"
+#include "test_entries.h"
+#import <Foundation/Foundation.h>
 
 extern void _Block_release(const void *aBlock);
 
@@ -149,7 +150,8 @@ static void test_retain_block_copies_stack_block(void)
 
 static void test_generic_retain_release_block(void)
 {
-    int captured = 42;
+    volatile int seed = 42;
+    int captured = seed;
     int (^stackBlock)(void) = ^{
         return captured;
     };
@@ -175,7 +177,8 @@ static void test_generic_global_block(void)
 static void test_generic_block_autorelease(void)
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    int captured = 44;
+    volatile int seed = 44;
+    int captured = seed;
     int (^stackBlock)(void) = ^{
         return captured;
     };
@@ -202,7 +205,7 @@ static void test_copy_property_block(void)
     objc_release(storage.slot);
 }
 
-int main(void)
+int libarc_test_core_lifetime(void)
 {
     test_nil();
     test_forwarding();

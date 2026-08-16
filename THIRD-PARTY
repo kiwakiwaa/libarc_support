@@ -1,0 +1,16 @@
+Third-party software
+====================
+
+BlocksRuntime
+-------------
+
+The bundled Blocks runtime comes from compiler-rt 3.4.  Its source carries
+Apple's MIT licence and compiler-rt is distributed under the University of
+Illinois/NCSA open source licence.  See vendor/BlocksRuntime/LICENSE.
+
+PLWeakCompatibility
+-------------------
+
+The weak-reference implementation is adapted from PLWeakCompatibility,
+Copyright © 2012 Plausible Labs Cooperative, Inc.  It is distributed under
+the BSD 3-Clause licence.  See vendor/PLWeakCompatibility/LICENSE.

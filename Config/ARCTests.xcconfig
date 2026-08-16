@@ -1,0 +1,9 @@
+ARCHS = x86_64
+// Enable ARC in the frontend without force-loading Apple's Lion-era libarclite.
+CLANG_ENABLE_OBJC_ARC = NO
+GCC_VERSION = com.apple.compilers.llvm.clang.1_0
+MACOSX_DEPLOYMENT_TARGET = 10.6
+OTHER_CFLAGS = -Xclang -fobjc-arc -Xclang -fobjc-runtime-has-weak -fblocks
+OTHER_LDFLAGS = -lobjc -framework CoreFoundation -framework Foundation
+PRODUCT_NAME = libarc_support_arc_tests
+SKIP_INSTALL = YES
