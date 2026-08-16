@@ -60,6 +60,15 @@ int libarc_test_block_codegen(void)
             "Objective-C block parameter");
         arc_block_assert(invoke_local_block() == 42, "strong local block");
 
+        int (^foundationBlock)(void) = ^{
+            return captured + 2;
+        };
+        NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                foundationBlock, @"block", nil];
+        int (^storedFoundationBlock)(void) = [dictionary objectForKey:@"block"];
+        arc_block_assert(storedFoundationBlock() == 44,
+            "Foundation retains a stack block");
+
         BlockHarness *harness = [[BlockHarness alloc] init];
         harness.storedBlock = ^{
             return captured + 1;

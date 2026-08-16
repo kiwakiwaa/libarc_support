@@ -50,11 +50,29 @@
 		B10000000000000000000037 /* arc_weak_concurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000027 /* arc_weak_concurrency.m */; };
 		B10000000000000000000038 /* arc_weak_lifetime.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000028 /* arc_weak_lifetime.m */; };
 		B10000000000000000000039 /* arc_weak_table_pruning.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000029 /* arc_weak_table_pruning.m */; };
-		B1000000000000000000003A /* libarc_support.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000001 /* libarc_support.a */; };
 		B10000000000000000000040 /* arc_tests_main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000030 /* arc_tests_main.m */; };
 		B10000000000000000000041 /* arc_block_codegen.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000031 /* arc_block_codegen.m */; };
 		B10000000000000000000042 /* arc_property_codegen.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000032 /* arc_property_codegen.m */; };
-		B10000000000000000000043 /* libarc_support.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000001 /* libarc_support.a */; };
+		B10000000000000000000061 /* arc_alloc.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000001 /* arc_alloc.m */; };
+		B10000000000000000000062 /* arc_bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000002 /* arc_bridge.m */; };
+		B10000000000000000000063 /* arc_core.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000003 /* arc_core.m */; };
+		B10000000000000000000064 /* arc_pool.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000004 /* arc_pool.m */; };
+		B10000000000000000000065 /* arc_weak_runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000005 /* arc_weak_runtime.m */; };
+		B10000000000000000000066 /* arc_weak_table.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000006 /* arc_weak_table.m */; };
+		B10000000000000000000067 /* data.c in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000010 /* data.c */; settings = {COMPILER_FLAGS = "-Wno-missing-prototypes"; }; };
+		B10000000000000000000068 /* runtime.c in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000011 /* runtime.c */; settings = {COMPILER_FLAGS = "-Wno-missing-prototypes -Wno-shorten-64-to-32"; }; };
+		B10000000000000000000069 /* arc_runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000007 /* arc_runtime.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1000000000000000000006A /* Block.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000012 /* Block.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B10000000000000000000071 /* arc_alloc.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000001 /* arc_alloc.m */; };
+		B10000000000000000000072 /* arc_bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000002 /* arc_bridge.m */; };
+		B10000000000000000000073 /* arc_core.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000003 /* arc_core.m */; };
+		B10000000000000000000074 /* arc_pool.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000004 /* arc_pool.m */; };
+		B10000000000000000000075 /* arc_weak_runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000005 /* arc_weak_runtime.m */; };
+		B10000000000000000000076 /* arc_weak_table.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000006 /* arc_weak_table.m */; };
+		B10000000000000000000077 /* data.c in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000010 /* data.c */; settings = {COMPILER_FLAGS = "-Wno-missing-prototypes"; }; };
+		B10000000000000000000078 /* runtime.c in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000011 /* runtime.c */; settings = {COMPILER_FLAGS = "-Wno-missing-prototypes -Wno-shorten-64-to-32"; }; };
+		B10000000000000000000079 /* arc_runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000007 /* arc_runtime.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1000000000000000000007A /* Block.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000012 /* Block.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +80,7 @@
 		C10000000000000000000002 = {isa = PBXContainerItemProxy; containerPortal = A00000000000000000000001 /* Project object */; proxyType = 1; remoteGlobalIDString = AE0000000000000000000001; remoteInfo = libarc_support_static; };
 		C10000000000000000000003 = {isa = PBXContainerItemProxy; containerPortal = A00000000000000000000001 /* Project object */; proxyType = 1; remoteGlobalIDString = AE0000000000000000000003; remoteInfo = libarc_support_tests; };
 		C10000000000000000000004 = {isa = PBXContainerItemProxy; containerPortal = A00000000000000000000001 /* Project object */; proxyType = 1; remoteGlobalIDString = AE0000000000000000000004; remoteInfo = libarc_support_arc_tests; };
+		C10000000000000000000005 = {isa = PBXContainerItemProxy; containerPortal = A00000000000000000000001 /* Project object */; proxyType = 1; remoteGlobalIDString = AE0000000000000000000006; remoteInfo = libarc_support_legacy_static; };
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +88,8 @@
 		AA0000000000000000000002 /* libarc_support.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libarc_support.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0000000000000000000003 /* libarc_support_tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libarc_support_tests; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0000000000000000000004 /* libarc_support_arc_tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libarc_support_arc_tests; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000005 /* libarc_support_legacy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libarc_support_legacy.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000006 /* libarc_support_legacy.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libarc_support_legacy.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0000000000000000000001 /* arc_alloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arc_alloc.m; sourceTree = "<group>"; };
 		AB0000000000000000000002 /* arc_bridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arc_bridge.m; sourceTree = "<group>"; };
 		AB0000000000000000000003 /* arc_core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arc_core.m; sourceTree = "<group>"; };
@@ -99,6 +120,7 @@
 		AB0000000000000000000032 /* arc_property_codegen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = arc_property_codegen.m; sourceTree = "<group>"; };
 		AB0000000000000000000033 /* test_entries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test_entries.h; sourceTree = "<group>"; };
 		AB0000000000000000000040 /* libarc_support.exp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = libarc_support.exp; sourceTree = "<group>"; };
+		AB0000000000000000000044 /* libarc_support-legacy.exp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "libarc_support-legacy.exp"; sourceTree = "<group>"; };
 		AB0000000000000000000041 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		AB0000000000000000000042 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		AB0000000000000000000043 /* THIRD-PARTY */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "THIRD-PARTY"; sourceTree = "<group>"; };
@@ -115,8 +137,10 @@
 /* Begin PBXFrameworksBuildPhase section */
 		AF0000000000000000000002 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 		AF0000000000000000000012 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
-		AF0000000000000000000022 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (B1000000000000000000003A /* libarc_support.a in Frameworks */, ); runOnlyForDeploymentPostprocessing = 0; };
-		AF0000000000000000000032 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000043 /* libarc_support.a in Frameworks */, ); runOnlyForDeploymentPostprocessing = 0; };
+		AF0000000000000000000022 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		AF0000000000000000000032 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		AF0000000000000000000042 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		AF0000000000000000000052 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -126,27 +150,31 @@
 		AC000000000000000000000A /* libarc_support */ = {isa = PBXGroup; children = (AB0000000000000000000007 /* arc_runtime.h */, ); path = libarc_support; sourceTree = "<group>"; };
 		AC0000000000000000000003 /* src */ = {isa = PBXGroup; children = (AB0000000000000000000001, AB0000000000000000000002, AB0000000000000000000003, AB0000000000000000000004, AB0000000000000000000005, AB0000000000000000000006, ); path = src; sourceTree = "<group>"; };
 		AC0000000000000000000004 /* private */ = {isa = PBXGroup; children = (AB0000000000000000000008, AB0000000000000000000009, ); path = private; sourceTree = "<group>"; };
-		AC0000000000000000000005 /* exports */ = {isa = PBXGroup; children = (AB0000000000000000000040, ); path = exports; sourceTree = "<group>"; };
+		AC0000000000000000000005 /* exports */ = {isa = PBXGroup; children = (AB0000000000000000000040, AB0000000000000000000044, ); path = exports; sourceTree = "<group>"; };
 		AC0000000000000000000006 /* vendor */ = {isa = PBXGroup; children = (AC0000000000000000000007 /* BlocksRuntime */, AB0000000000000000000060 /* PLWeakCompatibility */, ); path = vendor; sourceTree = "<group>"; };
 		AC0000000000000000000007 /* BlocksRuntime */ = {isa = PBXGroup; children = (AB0000000000000000000012, AB0000000000000000000013, AB0000000000000000000014, AB0000000000000000000010, AB0000000000000000000011, AB0000000000000000000015, ); path = BlocksRuntime; sourceTree = "<group>"; };
 		AC0000000000000000000008 /* tests */ = {isa = PBXGroup; children = (AB0000000000000000000033, AB0000000000000000000020, AB0000000000000000000030, AB0000000000000000000021, AB0000000000000000000031, AB0000000000000000000022, AB0000000000000000000023, AB0000000000000000000024, AB0000000000000000000032, AB0000000000000000000025, AB0000000000000000000026, AB0000000000000000000027, AB0000000000000000000028, AB0000000000000000000029, ); path = tests; sourceTree = "<group>"; };
-		AC0000000000000000000009 /* Products */ = {isa = PBXGroup; children = (AA0000000000000000000001, AA0000000000000000000002, AA0000000000000000000003, AA0000000000000000000004, ); name = Products; sourceTree = "<group>"; };
+		AC0000000000000000000009 /* Products */ = {isa = PBXGroup; children = (AA0000000000000000000001, AA0000000000000000000002, AA0000000000000000000005, AA0000000000000000000006, AA0000000000000000000003, AA0000000000000000000004, ); name = Products; sourceTree = "<group>"; };
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
 		AF0000000000000000000003 /* Headers */ = {isa = PBXHeadersBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000021, B10000000000000000000022, ); runOnlyForDeploymentPostprocessing = 0; };
 		AF0000000000000000000013 /* Headers */ = {isa = PBXHeadersBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000023, B10000000000000000000024, ); runOnlyForDeploymentPostprocessing = 0; };
+		AF0000000000000000000043 /* Headers */ = {isa = PBXHeadersBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000069, B1000000000000000000006A, ); runOnlyForDeploymentPostprocessing = 0; };
+		AF0000000000000000000053 /* Headers */ = {isa = PBXHeadersBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000079, B1000000000000000000007A, ); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		AE0000000000000000000001 /* libarc_support_static */ = {isa = PBXNativeTarget; buildConfigurationList = AJ0000000000000000000003; buildPhases = (AF0000000000000000000003, AF0000000000000000000001, AF0000000000000000000002, ); buildRules = (); dependencies = (); name = libarc_support_static; productName = arc_support; productReference = AA0000000000000000000001; productType = "com.apple.product-type.library.static"; };
 		AE0000000000000000000002 /* libarc_support_dylib */ = {isa = PBXNativeTarget; buildConfigurationList = AJ0000000000000000000005; buildPhases = (AF0000000000000000000013, AF0000000000000000000011, AF0000000000000000000012, ); buildRules = (); dependencies = (); name = libarc_support_dylib; productName = arc_support; productReference = AA0000000000000000000002; productType = "com.apple.product-type.library.dynamic"; };
-		AE0000000000000000000003 /* libarc_support_tests */ = {isa = PBXNativeTarget; buildConfigurationList = AJ0000000000000000000007; buildPhases = (AF0000000000000000000021, AF0000000000000000000022, AF0000000000000000000023, ); buildRules = (); dependencies = (D10000000000000000000001, ); name = libarc_support_tests; productName = libarc_support_tests; productReference = AA0000000000000000000003; productType = "com.apple.product-type.tool"; };
+		AE0000000000000000000003 /* libarc_support_tests */ = {isa = PBXNativeTarget; buildConfigurationList = AJ0000000000000000000007; buildPhases = (AF0000000000000000000021, AF0000000000000000000022, AF0000000000000000000023, ); buildRules = (); dependencies = (D10000000000000000000005, ); name = libarc_support_tests; productName = libarc_support_tests; productReference = AA0000000000000000000003; productType = "com.apple.product-type.tool"; };
 		AE0000000000000000000004 /* libarc_support_arc_tests */ = {isa = PBXNativeTarget; buildConfigurationList = AJ0000000000000000000009; buildPhases = (AF0000000000000000000031, AF0000000000000000000032, AF0000000000000000000033, ); buildRules = (); dependencies = (D10000000000000000000002, ); name = libarc_support_arc_tests; productName = libarc_support_arc_tests; productReference = AA0000000000000000000004; productType = "com.apple.product-type.tool"; };
+		AE0000000000000000000006 /* libarc_support_legacy_static */ = {isa = PBXNativeTarget; buildConfigurationList = AJ000000000000000000000D; buildPhases = (AF0000000000000000000043, AF0000000000000000000041, AF0000000000000000000042, ); buildRules = (); dependencies = (); name = libarc_support_legacy_static; productName = arc_support_legacy; productReference = AA0000000000000000000005; productType = "com.apple.product-type.library.static"; };
+		AE0000000000000000000007 /* libarc_support_legacy_dylib */ = {isa = PBXNativeTarget; buildConfigurationList = AJ000000000000000000000F; buildPhases = (AF0000000000000000000053, AF0000000000000000000051, AF0000000000000000000052, ); buildRules = (); dependencies = (); name = libarc_support_legacy_dylib; productName = arc_support_legacy; productReference = AA0000000000000000000006; productType = "com.apple.product-type.library.dynamic"; };
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A00000000000000000000001 /* Project object */ = {isa = PBXProject; attributes = {LastUpgradeCheck = 0420; }; buildConfigurationList = AJ0000000000000000000001; compatibilityVersion = "Xcode 3.2"; developmentRegion = English; hasScannedForEncodings = 0; knownRegions = (en, ); mainGroup = A00000000000000000000002; productRefGroup = AC0000000000000000000009; projectDirPath = ""; projectRoot = ""; targets = (AE0000000000000000000001, AE0000000000000000000002, AE0000000000000000000003, AE0000000000000000000004, AE0000000000000000000005, ); };
+		A00000000000000000000001 /* Project object */ = {isa = PBXProject; attributes = {LastUpgradeCheck = 0420; }; buildConfigurationList = AJ0000000000000000000001; compatibilityVersion = "Xcode 3.2"; developmentRegion = English; hasScannedForEncodings = 0; knownRegions = (en, ); mainGroup = A00000000000000000000002; productRefGroup = AC0000000000000000000009; projectDirPath = ""; projectRoot = ""; targets = (AE0000000000000000000001, AE0000000000000000000002, AE0000000000000000000006, AE0000000000000000000007, AE0000000000000000000003, AE0000000000000000000004, AE0000000000000000000005, ); };
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -155,10 +183,12 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AF0000000000000000000001 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000001, B10000000000000000000002, B10000000000000000000003, B10000000000000000000004, B10000000000000000000005, B10000000000000000000006, B10000000000000000000007, B10000000000000000000008, ); runOnlyForDeploymentPostprocessing = 0; };
-		AF0000000000000000000011 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000011, B10000000000000000000012, B10000000000000000000013, B10000000000000000000014, B10000000000000000000015, B10000000000000000000016, B10000000000000000000017, B10000000000000000000018, ); runOnlyForDeploymentPostprocessing = 0; };
+		AF0000000000000000000001 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000001, B10000000000000000000002, B10000000000000000000003, B10000000000000000000004, B10000000000000000000005, B10000000000000000000006, ); runOnlyForDeploymentPostprocessing = 0; };
+		AF0000000000000000000011 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000011, B10000000000000000000012, B10000000000000000000013, B10000000000000000000014, B10000000000000000000015, B10000000000000000000016, ); runOnlyForDeploymentPostprocessing = 0; };
 		AF0000000000000000000021 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000030, B10000000000000000000031, B10000000000000000000032, B10000000000000000000033, B10000000000000000000034, B10000000000000000000035, B10000000000000000000036, B10000000000000000000037, B10000000000000000000038, B10000000000000000000039, ); runOnlyForDeploymentPostprocessing = 0; };
 		AF0000000000000000000031 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000040, B10000000000000000000041, B10000000000000000000042, ); runOnlyForDeploymentPostprocessing = 0; };
+		AF0000000000000000000041 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000061, B10000000000000000000062, B10000000000000000000063, B10000000000000000000064, B10000000000000000000065, B10000000000000000000066, B10000000000000000000067, B10000000000000000000068, ); runOnlyForDeploymentPostprocessing = 0; };
+		AF0000000000000000000051 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000071, B10000000000000000000072, B10000000000000000000073, B10000000000000000000074, B10000000000000000000075, B10000000000000000000076, B10000000000000000000077, B10000000000000000000078, ); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -166,6 +196,7 @@
 		D10000000000000000000002 = {isa = PBXTargetDependency; target = AE0000000000000000000001; targetProxy = C10000000000000000000002; };
 		D10000000000000000000003 = {isa = PBXTargetDependency; target = AE0000000000000000000003; targetProxy = C10000000000000000000003; };
 		D10000000000000000000004 = {isa = PBXTargetDependency; target = AE0000000000000000000004; targetProxy = C10000000000000000000004; };
+		D10000000000000000000005 = {isa = PBXTargetDependency; target = AE0000000000000000000006; targetProxy = C10000000000000000000005; };
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -181,6 +212,10 @@
 		AH000000000000000000000A /* Release */ = {isa = XCBuildConfiguration; baseConfigurationReference = AB0000000000000000000056; buildSettings = {}; name = Release; };
 		AH000000000000000000000B /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {PRODUCT_NAME = check; }; name = Debug; };
 		AH000000000000000000000C /* Release */ = {isa = XCBuildConfiguration; buildSettings = {PRODUCT_NAME = check; }; name = Release; };
+		AH000000000000000000000D /* Debug */ = {isa = XCBuildConfiguration; baseConfigurationReference = AB0000000000000000000053; buildSettings = {PRODUCT_NAME = arc_support_legacy; }; name = Debug; };
+		AH000000000000000000000E /* Release */ = {isa = XCBuildConfiguration; baseConfigurationReference = AB0000000000000000000053; buildSettings = {PRODUCT_NAME = arc_support_legacy; }; name = Release; };
+		AH000000000000000000000F /* Debug */ = {isa = XCBuildConfiguration; baseConfigurationReference = AB0000000000000000000054; buildSettings = {EXPORTED_SYMBOLS_FILE = "$(SRCROOT)/exports/libarc_support-legacy.exp"; PRODUCT_NAME = arc_support_legacy; }; name = Debug; };
+		AH0000000000000000000010 /* Release */ = {isa = XCBuildConfiguration; baseConfigurationReference = AB0000000000000000000054; buildSettings = {EXPORTED_SYMBOLS_FILE = "$(SRCROOT)/exports/libarc_support-legacy.exp"; PRODUCT_NAME = arc_support_legacy; }; name = Release; };
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -190,6 +225,8 @@
 		AJ0000000000000000000007 /* Runtime tests */ = {isa = XCConfigurationList; buildConfigurations = (AH0000000000000000000007, AH0000000000000000000008, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 		AJ0000000000000000000009 /* ARC tests */ = {isa = XCConfigurationList; buildConfigurations = (AH0000000000000000000009, AH000000000000000000000A, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 		AJ000000000000000000000B /* Check */ = {isa = XCConfigurationList; buildConfigurations = (AH000000000000000000000B, AH000000000000000000000C, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		AJ000000000000000000000D /* Legacy static */ = {isa = XCConfigurationList; buildConfigurations = (AH000000000000000000000D, AH000000000000000000000E, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		AJ000000000000000000000F /* Legacy dynamic */ = {isa = XCConfigurationList; buildConfigurations = (AH000000000000000000000F, AH0000000000000000000010, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 /* End XCConfigurationList section */
 	};
 	rootObject = A00000000000000000000001 /* Project object */;

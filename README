@@ -1,28 +1,38 @@
-libarc_support 1.1.0
+libarc_support 1.1.1
 ====================
 
-libarc_support supplies the ARC and Blocks runtime functions needed by
-applications which still support Mac OS X 10.4 and later.  PowerPC, i386 and
-x86_64 are supported.  The x86_64 slice requires Mac OS X 10.5 or later.  The
-static library is the recommended product.
+libarc_support supplies the ARC runtime functions needed by applications which
+still support Mac OS X 10.4 and later.  PowerPC, i386 and x86_64 are supported.
+The x86_64 slice requires Mac OS X 10.5 or later.  The static library is the
+recommended product.
+
+Mac OS X 10.4 and 10.5 also need the standalone Blocks runtime.  The legacy
+products include it in the same library.  Mac OS X 10.6 and later must use the
+normal products so Apple's native Blocks classes remain in charge.
 
 Using it in an Xcode project
 ----------------------------
 
 1. Drag libarc_support.xcodeproj into your project.
-2. Add libarc_support_static as a target dependency.
+2. Add libarc_support_static as a target dependency for Mac OS X 10.6 or later.
 3. Link libarc_support.a to your application target.
 
 That is all.
 
+For Mac OS X 10.4 or 10.5, use libarc_support_legacy_static and link
+libarc_support_legacy.a instead.  It supplies both ARC and Blocks support.
+
 The libarc_support_dylib target builds libarc_support.dylib for applications
-which prefer a dynamic library.
+which prefer a dynamic library.  The corresponding legacy target is
+libarc_support_legacy_dylib.
 
 CMake users may add this directory with add_subdirectory() and link either
 libarc_support::static or libarc_support::dynamic.  For example:
 
     add_subdirectory(path/to/libarc_support)
     target_link_libraries(MyApplication PRIVATE libarc_support::static)
+
+Use libarc_support::legacy_static for a Mac OS X 10.4 or 10.5 application.
 
 Building and testing
 --------------------

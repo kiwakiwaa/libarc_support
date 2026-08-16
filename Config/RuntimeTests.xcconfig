@@ -5,6 +5,6 @@ GCC_VERSION = com.apple.compilers.llvm.clang.1_0
 GCC_OPTIMIZATION_LEVEL = 0
 MACOSX_DEPLOYMENT_TARGET = 10.4
 OTHER_CFLAGS = -fblocks
-OTHER_LDFLAGS = -lobjc -framework CoreFoundation -framework Foundation
+OTHER_LDFLAGS = $(BUILT_PRODUCTS_DIR)/libarc_support_legacy.a -lobjc -framework CoreFoundation -framework Foundation
 PRODUCT_NAME = libarc_support_tests
 SKIP_INSTALL = YES
